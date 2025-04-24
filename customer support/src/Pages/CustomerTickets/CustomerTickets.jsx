@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 import axios from "axios";
 import "./CustomerTickets.css";
 
-const socket = io("http://localhost:2000");
+const socket = io("https://noveg-customer-support.onrender.com");
 
 const CustomerTickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -16,7 +16,7 @@ const CustomerTickets = () => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await axios.get("http://localhost:2000/api/tickets");
+        const response = await axios.get("https://noveg-customer-support.onrender.com/api/tickets");
         if (response.data.success) {
           const sortedTickets = response.data.tickets.sort((a, b) =>
             new Date(b.createdAt) - new Date(a.createdAt)
